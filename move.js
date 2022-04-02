@@ -13,6 +13,10 @@ var x = canvas.width/2;
 var y = canvas.height-30;
 /*ここまで*/
 
+/*発射物の発射場所指定*/
+var x_bullet = x;
+var y_bullet = y;
+
 var dx = 2;
 var dy = -2
 
@@ -49,22 +53,38 @@ function keyUpHandle(e){
     }
 }
 
+function bullet_move(){
+    var y_move = y_bullet;
+    if(canvas.height > 0){
+        y_move = y_move - 1;
+    } 
+}
+
+setInterval(bullet_move,10);
+
+/*gameの実行画面*/
 function move(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
     draw_CPU();
+    draw_bulletball();
 
     if(rightPressed && x<canvas.width-20){
         x = x + 5;
+        x_bullet = x;
     }
     else if(leftPressed && x>20){
         x = x - 5;
+        x_bullet = x;
     }
     else if(upPressed && y>20){
         y = y - 5;
+        y_bullet = y;
     }
     else if(downPressed && y<canvas.height-20){
         y = y + 5;
+        y_bullet = y;
     }
 }
+/*ここまで*/
 
 setInterval(move,10);

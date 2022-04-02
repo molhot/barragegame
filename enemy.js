@@ -13,11 +13,21 @@ function draw_CPU(){
     ctx.fillStyle="green";
     ctx.fill();
     ctx.closePath();
-    /*ここまで*/
 }
+/*ここまで*/
+
+/*自機からでる球の記載*/
+function draw_bulletball(){
+    ctx.beginPath();
+    ctx.arc(x_bullet,y_bullet,3,0,Math.PI*2);
+    ctx.fillStyle="red";
+    ctx.fill();
+    ctx.closePath();
+}
+/*ここまで*/
 
 function draw_enemy1(){
-    /*enemy1　三角形*/
+    /*enemy1 三角形*/
     ctx.beginPath();
     ctx.strokeStyle = 'red';
     /*始点を表している（三角形の一番上）*/
