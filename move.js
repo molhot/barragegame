@@ -16,9 +16,11 @@ var y = canvas.height-30;
 /*発射物の発射場所指定*/
 var x_bullet = x;
 var y_bullet = y;
+/*ここまで*/
 
-var dx = 2;
-var dy = -2
+/*発射物のy方向の動きの始点を決定する*/
+var y_move = y_bullet;
+/*ここまで*/
 
 document.addEventListener("keydown",keyDownHandler,false);
 document.addEventListener("keyup",keyUpHandle,false);
@@ -54,13 +56,10 @@ function keyUpHandle(e){
 }
 
 function bullet_move(){
-    var y_move = y_bullet;
-    if(canvas.height > 0){
-        y_move = y_move - 1;
+    while(y_bullet > 0){
+        y_bullet = y_bullet - 5;
     } 
 }
-
-setInterval(bullet_move,10);
 
 /*gameの実行画面*/
 function move(){
@@ -68,23 +67,30 @@ function move(){
     draw_CPU();
     draw_bulletball();
 
+    /*bullet_move();*/
+
     if(rightPressed && x<canvas.width-20){
         x = x + 5;
         x_bullet = x;
+        bullet_move();
     }
     else if(leftPressed && x>20){
         x = x - 5;
         x_bullet = x;
+        bullet_move();
     }
     else if(upPressed && y>20){
         y = y - 5;
         y_bullet = y;
+        y_move = y;
+        bullet_move();
     }
     else if(downPressed && y<canvas.height-20){
         y = y + 5;
         y_bullet = y;
+        y_move = y;
+        bullet_move();
     }
 }
 /*ここまで*/
-
 setInterval(move,10);
